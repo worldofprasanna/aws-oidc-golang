@@ -11,9 +11,10 @@ import (
 func main() {
     // Initialize a session in us-west-2 that the SDK will use to load
     // credentials from the shared credentials file ~/.aws/credentials.
-    sess, err := session.NewSession(&aws.Config{
-        Region: aws.String("us-east-1")},
-    )
+	opts := session.Options{
+		SharedConfigState: session.SharedConfigEnable,
+	}
+	sess := session.Must(session.NewSessionWithOptions(opts))
 
     // Create S3 service client
     svc := s3.New(sess)
