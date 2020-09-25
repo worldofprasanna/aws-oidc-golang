@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oidc-golang
+  labels:
+    app: oidc-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: golang
+  template:
+    metadata:
+      labels:
+        app: golang
+    spec:
+      containers:
+      - name: oidc
+        image: wordofprasanna/aws-oidc:latest
+        ports:
+        - containerPort: 80
